@@ -38,4 +38,17 @@ Route::get('/produtos', function () {
     return view('products');
 });
 
+//estou pedindo o parâmetro obrigatório {id} que será copiado para a variável $id da function e então vou poder retonar o valor de id por  meio do array 
+Route::get('/produtos/{id}', function ($id) { 
+    return view('produtos', ['id' => $id]);
+});
 
+//a ? no parâmetro torna ele opcional. Se o usuario passar, ele sera retornado pra view, mas se o usuário não passar nenhum parâmetro, será passado $id = null (valor que eu defini como default) 
+Route::get('/produtos_teste/{id?}', function ($id = null) {
+    return view('produtos', ['id'=>$id]);
+});
+
+Route::get('/produtos_q', function () { 
+    $busca = request('search'); //se tiver alguma chave com esse nome na URL, o valor dela sera jogado dentro da variável busca
+    return view('produtos', ['busca'=>$busca]);
+});
