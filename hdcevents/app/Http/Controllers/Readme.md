@@ -1,0 +1,2 @@
+AULA 9 - CRIANDO CONTROLLERS
+Até o momento, nós estávamos implementando a lógica dentro das rotas (criando as variáveis e arrays lá, e dando return lá também) mas na prática, quem fica com a implementação da lógica é o controller.

@@ -18,15 +18,11 @@ Ponta inicial: eu digo por onde o usuário acessa (URL)
 Ponta final: eu retorno para o usuário o fim/resultado da manipulação dos dados (view resultante dessas manipulações)
 Uma rota também pode retornar valores de variáveis por exemplo*/
 
-Route::get('/', function () {
-    $nome = "Poliana";
-    $idade = 22;
-    $arr = [1,2,3,4,5];    
-    $nomes = ["Maria", "João", "Carlos", "Luiz"];
+use App\Http\Controllers\EventController;
 
-    //eu posso passar a variavel que contem o valor, ou o valor diretamente, como foi feito pra a chave de nome profissao
-    return view('welcome',['user'=>$nome, 'idade'=>$idade, 'profissao'=>"Estudante", 'array'=>$arr, 'nomes'=>$nomes]); 
-});
+Route::get('/', [EventController::class, 'index']);
+
+Route::get('/events/create', [EventController::class, 'create']);
 
 //criei uma nova rota cujo URL é /contato e que retona a view contato (contato.blade.php). Lembrando que a url não precisa ser igual À view (não precisa ter o mesmo nome). Eu também posso retornar a mesma view para urls diferentes
 Route::get('/contato', function () {
