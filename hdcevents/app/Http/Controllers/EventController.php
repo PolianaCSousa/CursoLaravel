@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event; //usou o namespace para o controller ter acesso ao Model Event
 
 class EventController extends Controller
 {
     public function index() {
 
-        $nome = "Poliana";
-        $idade = 22;
-        $arr = [1,2,3,4,5];    
-        $nomes = ["Maria", "João", "Carlos", "Luiz"];
+        //a variavel $events está recebendo todos os dados do BD por meio do model usando o comando Event::all()
+        $events = Event::all(); //all é um comando do ORM
 
         //eu posso passar a variavel que contem o valor, ou o valor diretamente, como foi feito pra a chave de nome profissao
-        return view('welcome',['user'=>$nome, 'idade'=>$idade, 'profissao'=>"Estudante", 'array'=>$arr, 'nomes'=>$nomes]); 
+        return view('welcome',['events' => $events]); 
 
     }
 
