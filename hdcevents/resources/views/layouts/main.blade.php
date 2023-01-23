@@ -4,10 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        {{--Teremos uma seção chamada title que mudará o título da página dinamicamente--}}
         <title>@yield('title')</title>
-
-        {{--Todas as pastas que estão dentro da pasta public podem ser acessadas com a / antes do nome da pasta que tem o arquivo que eu quero--}}
+       
         <!-- Fonte do Google -->
         <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
         <!-- CSS Bootstrap -->
@@ -48,8 +46,16 @@
                 </div>
             </nav>
         </header>
-        {{--Teremos uma seção chamada content que mudará o conteúdo da página dinamicamente--}}
-        @yield('content')
+        <main>
+            <div class="container-fluid">
+                <div class="row">
+                    @if(session('msg'))
+                        <p class="msg">{{session('msg')}}</p>
+                    @endif
+                    @yield('content')
+                </div>
+            </div>
+        </main>
         <footer>
             <p>HDC Events &copy; 2023</p>
         </footer>
