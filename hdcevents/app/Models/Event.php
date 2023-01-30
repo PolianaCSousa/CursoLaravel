@@ -9,4 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     use HasFactory;
+
+    //aqui eu estou fazendo o casting para o atributo items. Estou dizendo que ele é do tipo array
+    protected $casts = [ 'items' => 'array']; 
 }

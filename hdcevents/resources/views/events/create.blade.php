@@ -30,6 +30,25 @@
             <label for="title">Descrição:</label>
             <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?"> </textarea>
         </div>
+        <div class="form-group">
+            <label for="title">Adicione intens de infraestrutura:</label>
+            <!--no atributo name, usamos o [] quando vamos receber um ou mais itens-->
+            <div class="form-group">
+                <input type="checkbox" name="items[]" value="Cadeiras"> Cadeiras 
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="items[]" value="Palco"> Palco 
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="items[]" value="Cerveja Grátis"> Cerveja Grátis 
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="items[]" value="Open Food"> Open Food 
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="items[]" value="Brindes"> Brindes
+            </div>
+        </div>
         <input type="submit" class="btn btn-primary" value="Criar Evento">
         <!--Pelo que entendi, ao clicar no submit (botao de criar evento) a aplicação acessa, por meio da rota post, a action store do meu controller-->
     </form>
