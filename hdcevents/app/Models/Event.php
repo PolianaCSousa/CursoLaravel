@@ -12,4 +12,7 @@ class Event extends Model
 
     //aqui eu estou fazendo o casting para o atributo items. Estou dizendo que ele é do tipo array
     protected $casts = [ 'items' => 'array']; 
+
+    protected $dates = ['date']; //esse atributto $dates coloca a data no formato certo antes de salvar no BD
+
 }
