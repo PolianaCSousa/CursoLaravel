@@ -26,6 +26,10 @@ Route::get('/events/create', [EventController::class, 'create']);
 
 Route::post('/events', [EventController::class, 'store']);
 
+Route::get('/events/{id}', [EventController::class, 'show']);
+
+
+
 //criei uma nova rota cujo URL é /contato e que retona a view contato (contato.blade.php). Lembrando que a url não precisa ser igual À view (não precisa ter o mesmo nome). Eu também posso retornar a mesma view para urls diferentes
 Route::get('/contato', function () {
     return view('contato');

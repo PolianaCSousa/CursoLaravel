@@ -31,6 +31,7 @@
             <textarea name="description" id="description" class="form-control" placeholder="O que vai acontecer no evento?"> </textarea>
         </div>
         <input type="submit" class="btn btn-primary" value="Criar Evento">
+        <!--Pelo que entendi, ao clicar no submit (botao de criar evento) a aplicação acessa, por meio da rota post, a action store do meu controller-->
     </form>
 </div>
 @endsection
