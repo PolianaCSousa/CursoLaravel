@@ -9,11 +9,22 @@ class EventController extends Controller
 {
     public function index() {
 
-        //a variavel $events está recebendo todos os dados do BD por meio do model usando o comando Event::all()
-        $events = Event::all(); //all é um comando do ORM
+        $search = request('search');
 
+        if($search){
+            
+            //A linha abaixo representa o seguinte comando SQL: WHERE title LIKE %$search%
+            $events = Event::where([['title', 'like', '%'.$search.'%']])->get();
+
+        }else{
+            //a variavel $events está recebendo todos os dados do BD por meio do model usando o comando Event::all()
+            $events = Event::all(); //all é um comando do ORM
+
+        }
+
+        
         //eu posso passar a variavel que contem o valor, ou o valor diretamente, como foi feito pra a chave de nome profissao
-        return view('welcome',['events' => $events]); 
+        return view('welcome',['events' => $events, 'search' => $search]); 
 
     }
 

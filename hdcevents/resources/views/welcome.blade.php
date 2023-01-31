@@ -6,15 +6,21 @@
 
 <div id="search-container" class="col-md-12">
     <h1>Busque um evento</h1>
-    <form action="">
+    <form action="/" method="GET">
         <input type="text" id="search" name="search" class="form-control" placeholder="Procurar...">
     </form>
 </div>
 <div id="events-container" class="col-md-12">
-    <h2>Próximos Eventos</h2>
-    <p class="subtitle">Veja os eventos do próximos dias</p>
+    @if($search)
+        <h2>Buscando por: {{ $search }}</h2>
+    @else
+        <h2>Próximos Eventos</h2>
+        <p class="subtitle">Veja os eventos do próximos dias</p>
+    @endif
     <div id="cards-container" class="row">
-        @if(count($events) == 0) <!--se nao tiver nenhum evento ele fala e nem entra no foreach ja que o array estara vazio-->
+         @if(count($events) == 0 && $search) 
+           <p>Não foi possível encontrar nenhum evento com {{ $search }}. <br><a href="/">Ver todos os eventos disponíveis!</a></p>
+        @elseif(count($events) == 0)<!--se ñ tiver nenhum evento ele fala e ñ entra no foreach ja que o array estaravazio-->
             <p>Não há eventos disponíveis.</p>
         @else
             @foreach($events as $event)
