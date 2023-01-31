@@ -48,7 +48,7 @@ header{
 }
 
 #navbar {
-    align-items: inherit;
+    justify-content: space-between;
     background-color: #FFF;
     padding: 5px 0;
 }
