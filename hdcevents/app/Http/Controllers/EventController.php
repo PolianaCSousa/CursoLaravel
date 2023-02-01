@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event; //usou o namespace para o controller ter acesso ao Model Event
+use App\Models\User; 
 
 class EventController extends Controller
 {
@@ -68,7 +69,14 @@ class EventController extends Controller
 
         $event = Event::findOrFail($id);
 
-        return view('events.show', ['event' => $event]);
+        /*
+        User::where('id','=',$event->user_id) : retorna o usuário cujo id seja igual ao id do $event->user_id (id salvo no BD). OBS: pode omitir o sinal de igual, o Laravel entende a mesma coisa.
+        first() : ele vai retornar o primeiro usuário que encontrar com o id informado
+        toArray() : os dados do usuário serão retornados em um array
+        */ 
+        $eventOwner = User::where('id', $event->user_id)->first()->toArray();
+
+        return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner]);
     }
 
 }
