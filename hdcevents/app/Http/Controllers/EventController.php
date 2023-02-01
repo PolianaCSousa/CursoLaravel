@@ -34,6 +34,7 @@ class EventController extends Controller
 
     //por meio do request consigo os dados que vieram do formulário
     public function store(Request $request) {
+       
         $event = new Event;
 
         $event->title = $request->title;
@@ -54,7 +55,9 @@ class EventController extends Controller
 
             $event->image = $imageName; //o que será salvo de fato no BD será o  nome da imagem apenas
         }
-
+        
+        $user = auth()->user(); //o metodo auth me da acesso ao usuario logado
+        $event->user_id = $user->id; //o id do usuario logado sera salvo junto com as informaçoes do evento, logo ele será o dono do evento
 
         $event->save();
 

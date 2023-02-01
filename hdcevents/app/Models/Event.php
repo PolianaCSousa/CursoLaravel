@@ -15,4 +15,8 @@ class Event extends Model
 
     protected $dates = ['date']; //esse atributto $dates coloca a data no formato certo antes de salvar no BD
 
+    public function user() {
+        return $this->belongsTo('App\Models\User');
+    }
+
 }

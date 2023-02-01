@@ -22,7 +22,8 @@ use App\Http\Controllers\EventController;
 
 Route::get('/', [EventController::class, 'index']);
 
-Route::get('/events/create', [EventController::class, 'create']);
+//para criar um evento, é preciso estar logado. O middleware('aut') faz com que seja necessário estar logado para acessar a view de criação de eventos
+Route::get('/events/create', [EventController::class, 'create'])->middleware('auth');
 
 Route::post('/events', [EventController::class, 'store']);
 
