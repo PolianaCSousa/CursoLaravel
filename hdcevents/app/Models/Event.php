@@ -15,6 +15,9 @@ class Event extends Model
 
     protected $dates = ['date']; //esse atributto $dates coloca a data no formato certo antes de salvar no BD
 
+    //estou dizendo que tudo que vier do post pode ser atualizado. Os campos que eu adicionar nesse array nao tem permissão para serem atualizados/editados 
+    protected $guarded = []; 
+
     public function user() {
         return $this->belongsTo('App\Models\User');
     }
