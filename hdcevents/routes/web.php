@@ -21,15 +21,11 @@ Uma rota também pode retornar valores de variáveis por exemplo*/
 use App\Http\Controllers\EventController;
 
 Route::get('/', [EventController::class, 'index']);
-
 //para criar um evento, é preciso estar logado. O middleware('aut') faz com que seja necessário estar logado para acessar a view de criação de eventos
 Route::get('/events/create', [EventController::class, 'create'])->middleware('auth');
-
-Route::post('/events', [EventController::class, 'store']);
-
 Route::get('/events/{id}', [EventController::class, 'show']);
-
-
+Route::post('/events', [EventController::class, 'store']);
+Route::delete('/events/{id}', [EventController::class, 'destroy']);
 
 //criei uma nova rota cujo URL é /contato e que retona a view contato (contato.blade.php). Lembrando que a url não precisa ser igual À view (não precisa ter o mesmo nome). Eu também posso retornar a mesma view para urls diferentes
 Route::get('/contato', function () {
