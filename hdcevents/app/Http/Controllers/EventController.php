@@ -69,6 +69,23 @@ class EventController extends Controller
 
         $event = Event::findOrFail($id);
 
+        $user = auth()->user(); //pega as informações do usuário autenticado
+        $hasUserJoined = false;
+
+        if($user) { //se o usuário estiver autenticado entra nesse if
+ 
+            //os dados dos eventos que o usuário está participando vão pra variável $userEvents como um array (dicionário) 
+            $userEvents = $user->eventsAsParticipant->toArray(); 
+
+            foreach($userEvents as $userEvent) {
+                if($userEvent['id'] == $id){
+                    $hasUserJoined = true;
+                }
+
+            }
+
+        }
+
         /*
         User::where('id','=',$event->user_id) : retorna o usuário cujo id seja igual ao id do $event->user_id (id salvo no BD). OBS: pode omitir o sinal de igual, o Laravel entende a mesma coisa.
         first() : ele vai retornar o primeiro usuário que encontrar com o id informado
@@ -76,7 +93,7 @@ class EventController extends Controller
         */ 
         $eventOwner = User::where('id', $event->user_id)->first()->toArray();
 
-        return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner]);
+        return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner, 'hasUserJoined' => $hasUserJoined]);
     }
 
     public function dashboard(){
@@ -144,5 +161,18 @@ class EventController extends Controller
 
         return redirect('/dashboard')->with('msg', 'Sua presença está confirmada no evento ' . $event->title);
     }
+
+    public function leaveEvent($id) {
+
+        $user = auth()->user();
+
+        $user->eventsAsParticipant()->detach($id);
+
+        $event = Event::findOrFail($id);
+
+        return redirect('/dashboard')->with('msg', 'Você saiu com sucesso do evento: ' . $event->title);
+
+    }
+
 
 }
